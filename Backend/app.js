@@ -1,10 +1,13 @@
 const express = require("express")
 const mysql = require("mysql2")
 const dotenv = require("dotenv").config()
+const cors = require('cors')
 
 const PORT = 2020
 // create instance of express 
 const app = express()
+// allow cors
+app.use(cors())
 // db config
 const dbConfig = {
     connectionLimit : 10,
@@ -33,14 +36,11 @@ app.post("/add-employee", (req,res) => {
     const last_name = req.body.last_name;
     const email = req.body.email;
     const password = req.body.password
-
     // database query to insert a user
     const sql = `INSERT INTO employee(first_name, last_name,email,password) VALUES('${first_name}', '${last_name}', '${email}', '${password}')`
     connection.query(sql, (err,fields, results) => {
         if(err) console.log(err);
         console.log("1 record inserted")
-        console.log(fields)
-        console.log(results)
     })
     const response = {
         status : "success",
