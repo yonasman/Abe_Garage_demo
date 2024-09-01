@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+}
+input {
+    display: block;
+    margin: 10px 0;
+    padding: 6px 30px;
+    margin-left: 36px;
+}
+.login_container {
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 24%;
+    height: 320px;
+    margin-top: 70px;
+    border: 1px solid gray;
+}
+input:last-child {
+    margin-left: 102px;
+    margin-top: 15px;
+    cursor: pointer;
+    background-color: #39bcec;
+    border: none;
+}
+.message {
+    color: green;
+    font-size: 22px;
+}

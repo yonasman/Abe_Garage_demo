@@ -1,8 +1,8 @@
 import './App.css'
 import {Routes, Route} from "react-router"
-import Home from "./Pages/Home"
+import Home from "./Pages/Home/Home"
 import AddEmployee from './Pages/AddEmployee/AddEmployee'
-import Login from './Pages/Login'
+import Login from './Pages/Login/Login'
 
 function App() {
   return (
