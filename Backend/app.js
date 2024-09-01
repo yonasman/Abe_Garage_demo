@@ -20,9 +20,61 @@ connection.connect( (err) => {
     if(err) console.log(err);
     console.log("Connected to db")
 })
+// middleware to parse request body
+app.use(express.json())
+// request handlers
 // get request handler
 app.get("/", (req,res) => {
     res.send("testing")
+})
+// adding employee request handler
+app.post("/add-employee", (req,res) => {
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const email = req.body.email;
+    const password = req.body.password
+
+    // database query to insert a user
+    const sql = `INSERT INTO employee(first_name, last_name,email,password) VALUES('${first_name}', '${last_name}', '${email}', '${password}')`
+    connection.query(sql, (err,fields, results) => {
+        if(err) console.log(err);
+        console.log("1 record inserted")
+        console.log(fields)
+        console.log(results)
+    })
+    const response = {
+        status : "success",
+        message : "Employee added successfully"
+    }
+    res.status(200).json(response)
+})
+// login request handler
+app.post("/login",(req,res) => {
+    const email = req.body.email;
+    const password = req.body.password
+    console.log(req.body)
+    // check for the existence of the user on the database
+    const sql =`SELECT * FROM employee WHERE email='${email}' AND password='${password}'`;
+
+    
+    connection.query(sql,(err,result) => {
+        if(err) console.log(err);
+        console.log(result)
+        // send response to the client depends on the condition
+        if(result.length > 0) {
+            const response = {
+                status :"success",
+                message : "Login successful"
+            }
+            res.status(200).json(response)
+        } else {
+            const response = {
+                status :"UnAuthorized",
+                message : "Login successful"
+            }
+            res.status(401).json(response)
+        }
+    })
 })
 
 // listening to port 2020
