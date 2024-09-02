@@ -52,7 +52,7 @@ app.post("/add-employee", (req,res) => {
 app.post("/login",(req,res) => {
     const email = req.body.email;
     const password = req.body.password
-    console.log(req.body)
+    // console.log(req.body)
     // check for the existence of the user on the database
     const sql =`SELECT * FROM employee WHERE email='${email}' AND password='${password}'`;
 
@@ -70,7 +70,7 @@ app.post("/login",(req,res) => {
         } else {
             const response = {
                 status :"UnAuthorized",
-                message : "Login successful"
+                message : "Login Failed"
             }
             res.status(401).json(response)
         }

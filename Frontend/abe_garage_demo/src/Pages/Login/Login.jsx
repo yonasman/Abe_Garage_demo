@@ -33,7 +33,6 @@ function Login() {
                     setResponseMessage("")
                 }, 2000);
             }
-            console.log(responseMessage)
             // reset the login
             setEmail("")
             setPassword("")
