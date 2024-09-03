@@ -9,7 +9,6 @@ async function addEmployee(employeeData) {
         // query
         const sql = "INSERT INTO employee(first_name, last_name, email, password) VALUES(?,?,?,?)";
         const result = await query(sql,[firstName,lastName,email,password])
-        console.log(result)
         if(result.insertId) {
             const insertId = result.insertId
             return insertId

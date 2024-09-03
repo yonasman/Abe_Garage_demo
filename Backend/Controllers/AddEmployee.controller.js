@@ -1,7 +1,6 @@
 const addEmployeeService = require("../Services/addEmployee.service")
 
 async function addEmployee(req,res,next) {
-    console.log("data" + req.body)
     try {
         const employee = await addEmployeeService.addEmployee(req.body);
         console.log(employee)
